@@ -12,16 +12,16 @@ def get_page_content(url):
     if response.status_code == 200:
        
         page_content = response.json()
-        matching(str(page_content))
+        matching(str(page_content) , url)
     else:
         print('some_error')
 
 
 
-def matching(page_content):
-    pattern = r'"(https?:\/\/(www\.youtube\.com|wwww\.vimeo\.com)[^\s]+)"'
+def matching(page_content , url:str):
+    pattern = r'"(https?:\/\/(www\.youtube\.com|player\.vimeo\.com)[^\s]+)"'
     links = re.findall(pattern , page_content)
-    print(links)
+    print(links ,url )
 
 def get_pages(filename : str):
     reader = csv.reader(open(filename , 'r'))
